@@ -7,19 +7,19 @@ from src import CompilerConfig
 from src import ConvertToIntConfig
 from src import JoinConfig
 from src import LabelConfig
+from src.classes import ImageDataConfig
 
 CSV_CFG: list[CsvDataConfig] = [
-    CsvDataConfig(
-        FILE_NAME='data/FuelConsumptionCo2.csv',
-        DELIMITER=',',
-        ROW_LIMIT=None,
-        SELECTED_COLS=[
-            'CO2EMISSIONS','FUELCONSUMPTION_COMB_MPG',
-        ],
-        CONVERT_TO_INT=[],
-        CONVERT_TO_LIST=[]
-    )
+
 ]
+
+IMAGE_CFG = ImageDataConfig(
+    DELIMITER=',',
+    ROW_LIMIT=10,
+    FILE_NAME='data/mnist_train_100.csv'
+
+)
+
 LABEL_CFG = LabelConfig(
     FILE='data/FuelConsumptionCo2.csv',
     NAME='CO2EMISSIONS',

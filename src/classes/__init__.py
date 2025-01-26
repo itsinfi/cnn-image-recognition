@@ -1,6 +1,7 @@
 from .model_config import ModelConfig
 from .compiler_config import CompilerConfig
 from .csv_data_config import CsvDataConfig
+from .image_data_config import ImageDataConfig
 from .training_config import TrainingConfig
 from .convert_to_int_config import ConvertToIntConfig
 from .join_config import JoinConfig

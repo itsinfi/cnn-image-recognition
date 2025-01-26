@@ -5,7 +5,7 @@ from src import test_model
 from tensorflow.keras.models import Sequential#, load_model TODO:
 
 x_train, x_test, y_train, y_test = read_data(
-    csv_cfg_list=CSV_CFG, 
+    csv_cfg=IMAGE_CFG,
     label_cfg=LABEL_CFG, 
     test_size=TEST_SIZE
 )
