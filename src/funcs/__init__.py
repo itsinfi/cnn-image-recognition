@@ -6,3 +6,5 @@ from .utils import apply_list_conversions
 from .utils import join_data
 from .utils import parse_list
 from .utils import split_data
+from .utils import read_image_data
+from .utils import plot_images

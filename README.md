@@ -6,6 +6,3 @@
 
 # Update environment
 1. run `conda env export -n dsbd > environment.yml`
-
-# Run code
-python .\app.py
