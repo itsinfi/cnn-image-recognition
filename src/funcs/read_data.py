@@ -1,7 +1,7 @@
 # from ..classes.csv_data_config import CsvDataConfig
 from ..classes.image_data_config import ImageDataConfig
 from ..classes.label_config import LabelConfig
-from .utils import plot_images, read_image_data
+from .utils import plot_images, read_image_data, split_image_data
 # from pandas import read_csv
 
 # TODO: return value
@@ -35,6 +35,6 @@ def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float
     # split data
     # return split_data(joined_csv=data_lines, label_name=label_cfg.NAME, test_size=test_size)
 
-    images = read_image_data(img_cfg)
+    images, labels = read_image_data(img_cfg)
     plot_images(images)
-    return images
+    return split_image_data(images=images, labels=labels, test_size=test_size)

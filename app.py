@@ -10,17 +10,17 @@ x_train, x_test, y_train, y_test = read_data(
     test_size=TEST_SIZE
 )
 
-model = train_model(
-    x_train=x_train,
-    y_train=y_train, 
-    model_cfg=MODEL_CFG, 
-    compiler_cfg=COMPILER_CFG, 
-    training_cfg=TRAINING_CFG,
-)
+# model = train_model(
+#     x_train=x_train,
+#     y_train=y_train, 
+#     model_cfg=MODEL_CFG, 
+#     compiler_cfg=COMPILER_CFG, 
+#     training_cfg=TRAINING_CFG,
+# )
 
-test_model(
-    model=model,
-    x_test=x_test,
-    y_test=y_test,
-    compiler_cfg=COMPILER_CFG
-)
+# test_model(
+#     model=model,
+#     x_test=x_test,
+#     y_test=y_test,
+#     compiler_cfg=COMPILER_CFG
+# )

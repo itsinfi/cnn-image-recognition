@@ -5,3 +5,4 @@ from .parse_list import parse_list
 from .split_data import split_data
 from .read_image_data import read_image_data
 from .plot_images import plot_images
+from .split_image_data import split_image_data
