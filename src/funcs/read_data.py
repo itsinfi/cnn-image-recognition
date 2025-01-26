@@ -36,5 +36,5 @@ def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float
     # return split_data(joined_csv=data_lines, label_name=label_cfg.NAME, test_size=test_size)
 
     images, labels = read_image_data(img_cfg)
-    plot_images(images)
+    # plot_images(images)
     return split_image_data(images=images, labels=labels, test_size=test_size)

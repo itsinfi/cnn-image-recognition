@@ -27,6 +27,8 @@ def read_image_data(img_cfg: ImageDataConfig) -> list[np.ndarray[float]]:
     labels = []
     for i in range(limit):
         split_lines = lines[i].split(img_cfg.DELIMITER)
-        labels.append(float(split_lines[0]))
-        images.append(np.asarray(split_lines[1:], dtype='float').reshape((28,28)))
+        # filter
+        if split_lines[0] in img_cfg.FILTER_LIST:
+            labels.append(float(split_lines[0]))
+            images.append(np.asarray(split_lines[1:], dtype='float').reshape((28,28)))
     return images, labels

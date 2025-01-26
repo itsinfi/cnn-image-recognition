@@ -16,7 +16,8 @@ CSV_CFG: list[CsvDataConfig] = [
 IMAGE_CFG = ImageDataConfig(
     DELIMITER=',',
     ROW_LIMIT=None,
-    FILE_NAME='data/mnist_train_100.csv'
+    FILE_NAME='data/mnist_train_100.csv',
+    FILTER_LIST=["0", "1"]
 
 )
 
@@ -24,14 +25,14 @@ LABEL_CFG = LabelConfig(
     FILE='data/FuelConsumptionCo2.csv',
     NAME='CO2EMISSIONS',
 )
-TEST_SIZE = .2
+TEST_SIZE = .45
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         Conv2D(filters=8, kernel_size=(1, 1), activation='relu', input_shape=(28, 28, 1)),
         Conv2D(filters=16, kernel_size=(3, 3), activation='relu'),
         Flatten(),
         Dense(units=16, activation='relu'),
-        Dense(units=10, activation='softmax'),
+        Dense(units=2, activation='softmax'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(

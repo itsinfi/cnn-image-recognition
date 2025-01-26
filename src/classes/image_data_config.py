@@ -10,8 +10,10 @@ class ImageDataConfig(DataConfig):
         FILE_NAME: str,
         ROW_LIMIT: int,
         DELIMITER: str,
+        FILTER_LIST: list[str],
     ) -> None:
         self.DELIMITER = DELIMITER
+        self.FILTER_LIST = FILTER_LIST
         super().__init__(
             FILE_NAME=FILE_NAME,
             ROW_LIMIT=ROW_LIMIT,
@@ -23,5 +25,6 @@ class ImageDataConfig(DataConfig):
             'file_name': self.FILE_NAME,
             'limit': self.ROW_LIMIT,
             'delimiter': self.DELIMITER,
+            'filters': self.FILTER_LIST,
         }
         return str(repr)
