@@ -1,7 +1,7 @@
 from .convert_to_int_config import ConvertToIntConfig
 from .abstract.data_config import DataConfig
 
-class CsvDataConfig(DataConfig):
+class ImageDataConfig(DataConfig):
 
     DELIMITER: str
     CONVERT_TO_LIST: list[str]
