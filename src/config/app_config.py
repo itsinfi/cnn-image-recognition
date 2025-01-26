@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.layers import Dense, Input, Flatten, Conv2D
 from datetime import datetime
 from src import CsvDataConfig
 from src import TrainingConfig
@@ -15,7 +15,7 @@ CSV_CFG: list[CsvDataConfig] = [
 
 IMAGE_CFG = ImageDataConfig(
     DELIMITER=',',
-    ROW_LIMIT=10,
+    ROW_LIMIT=None,
     FILE_NAME='data/mnist_train_100.csv'
 
 )
@@ -27,20 +27,21 @@ LABEL_CFG = LabelConfig(
 TEST_SIZE = .2
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
-        Input(shape=(1,)),
-        Dense(64, activation='relu'),
-        Dense(32, activation='relu'),
-        Dense(1),
+        Conv2D(filters=8, kernel_size=(1, 1), activation='relu', input_shape=(28, 28, 1)),
+        Conv2D(filters=16, kernel_size=(3, 3), activation='relu'),
+        Flatten(),
+        Dense(units=16, activation='relu'),
+        Dense(units=10, activation='softmax'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
-    LOSS='mse',
+    LOSS='sparse_categorical_crossentropy',
     OPTIMIZER='adam',
     METRICS=[
-        'mae',
+        'accuracy',
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=50,
+    EPOCHS=10,
     BATCH_SIZE=32,
 )
