@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, Input
 from datetime import datetime
 from src import CsvDataConfig
 from src import TrainingConfig
@@ -14,71 +14,11 @@ CSV_CFG: list[CsvDataConfig] = [
         DELIMITER=',',
         ROW_LIMIT=None,
         SELECTED_COLS=[
-            'CO2EMISSIONS','FUELCONSUMPTION_COMB',
+            'CO2EMISSIONS','FUELCONSUMPTION_COMB_MPG',
         ],
         CONVERT_TO_INT=[],
         CONVERT_TO_LIST=[]
     )
-    # CsvDataConfig(
-    #     FILE_NAME='data/category_hierarchy.csv',
-    #     DELIMITER='|',
-    #     ROW_LIMIT=5000,
-    #     SELECTED_COLS=[
-    #         'category',
-    #         'parent_category',
-    #     ],
-    #     CONVERT_TO_INT=[],
-    #     CONVERT_TO_LIST=[],
-    # ),
-    # CsvDataConfig(
-    #     FILE_NAME='data/items.csv',
-    #     DELIMITER='|',
-    #     ROW_LIMIT=5000,
-    #     SELECTED_COLS=[
-    #         'itemID',
-    #         'brand',
-    #         'feature_1',
-    #         'feature_2',
-    #         'feature_3',
-    #         'feature_4',
-    #         'feature_5',
-    #         'categories',
-    #     ],
-    #     CONVERT_TO_INT=[],
-    #     CONVERT_TO_LIST=[
-    #         'categories'
-    #     ],
-    # ),
-    # CsvDataConfig(
-    #     FILE_NAME='data/orders.csv',
-    #     DELIMITER='|',
-    #     ROW_LIMIT=5000,
-    #     SELECTED_COLS=[
-    #         'date',
-    #         'userID',
-    #         'itemID',
-    #         'order',
-    #     ],
-    #     CONVERT_TO_INT=[
-    #         ConvertToIntConfig(
-    #             COL='date',
-    #             TYPE=datetime,
-    #             FORMAT='%Y-%m-%d'
-    #         ),
-    #     ],
-    #     CONVERT_TO_LIST=[],
-    # ),
-    # CsvDataConfig(
-    #     FILE_NAME='data/submission.csv',
-    #     DELIMITER='|',
-    #     ROW_LIMIT=5000,
-    #     SELECTED_COLS=[
-    #         'userID',
-    #         'itemID',
-    #     ],
-    #     CONVERT_TO_INT=[],
-    #     CONVERT_TO_LIST=[],
-    # ),
 ]
 LABEL_CFG = LabelConfig(
     FILE='data/FuelConsumptionCo2.csv',
@@ -87,14 +27,16 @@ LABEL_CFG = LabelConfig(
 TEST_SIZE = .2
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
-        Dense(units=2, activation='relu'),
-        Dense(units=1, activation='softmax'),
+        Input(shape=(1,)),
+        Dense(64, activation='relu'),
+        Dense(32, activation='relu'),
+        Dense(1),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
-    LOSS='mean_squared_error',
+    LOSS='mse',
     OPTIMIZER='adam',
-    METICS=[
+    METRICS=[
         'mae',
     ]
 )

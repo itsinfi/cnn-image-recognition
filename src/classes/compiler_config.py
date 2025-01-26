@@ -6,10 +6,10 @@ class CompilerConfig(Config):
     OPTIMIZER: str
     METRICS: list[str]
 
-    def __init__(self, LOSS: str, OPTIMIZER: str, METICS: list[str]) -> None:
+    def __init__(self, LOSS: str, OPTIMIZER: str, METRICS: list[str]) -> None:
         self.LOSS = LOSS
         self.OPTIMIZER = OPTIMIZER
-        self.METRICS = METICS
+        self.METRICS = METRICS
         super().__init__()
 
     def __str__(self) -> str:

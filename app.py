@@ -15,7 +15,7 @@ model = train_model(
     y_train=y_train, 
     model_cfg=MODEL_CFG, 
     compiler_cfg=COMPILER_CFG, 
-    training_cfg=TRAINING_CFG
+    training_cfg=TRAINING_CFG,
 )
 
 test_model(

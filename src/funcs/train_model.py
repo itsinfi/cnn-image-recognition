@@ -2,8 +2,9 @@ from ..classes.model_config import ModelConfig
 from ..classes.compiler_config import CompilerConfig
 from ..classes.training_config import TrainingConfig
 from tensorflow.keras import Sequential
+from numpy import ndarray
 
-def train_model(x_train: any, y_train: any, model_cfg: ModelConfig, compiler_cfg: CompilerConfig, training_cfg: TrainingConfig) -> Sequential:
+def train_model(x_train: ndarray, y_train: ndarray, model_cfg: ModelConfig, compiler_cfg: CompilerConfig, training_cfg: TrainingConfig) -> Sequential:
     model = Sequential(
         model_cfg.LAYERS
     )
