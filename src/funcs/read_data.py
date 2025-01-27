@@ -5,7 +5,7 @@ from .utils import plot_images, read_image_data, split_image_data
 # from pandas import read_csv
 
 # TODO: return value
-def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float):
+def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float, show_image_plot: bool):
     # csv_files = []
     #
     # # for all csv configs
@@ -36,5 +36,8 @@ def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float
     # return split_data(joined_csv=data_lines, label_name=label_cfg.NAME, test_size=test_size)
 
     images, labels = read_image_data(img_cfg)
-    # plot_images(images)
+    
+    if show_image_plot:
+        plot_images(images)
+
     return split_image_data(images=images, labels=labels, test_size=test_size)

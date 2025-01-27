@@ -9,18 +9,18 @@ from src import JoinConfig
 from src import LabelConfig
 from src.classes import ImageDataConfig
 
+SHOW_IMAGE_PLOT = False
+SHOW_MODEL_PLOT = False
+
 CSV_CFG: list[CsvDataConfig] = [
 
 ]
-
 IMAGE_CFG = ImageDataConfig(
     DELIMITER=',',
     ROW_LIMIT=None,
     FILE_NAME='data/mnist_train_100.csv',
     FILTER_LIST=["0", "1"]
-
 )
-
 LABEL_CFG = LabelConfig(
     FILE='data/FuelConsumptionCo2.csv',
     NAME='CO2EMISSIONS',
