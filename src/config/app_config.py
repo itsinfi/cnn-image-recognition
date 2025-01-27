@@ -17,8 +17,8 @@ CSV_CFG: list[CsvDataConfig] = [
 ]
 IMAGE_CFG = ImageDataConfig(
     DELIMITER=',',
-    ROW_LIMIT=None,
-    FILE_NAME='data/mnist_train_100.csv',
+    ROW_LIMIT=300,
+    FILE_NAME='data/mnist_train.csv',
     FILTER_LIST=["0", "1"]
 )
 LABEL_CFG = LabelConfig(
@@ -29,7 +29,7 @@ TEST_SIZE = .45
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         Conv2D(filters=8, kernel_size=(1, 1), activation='relu', input_shape=(28, 28, 1)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
         Flatten(),
         Dense(units=16, activation='relu'),
         Dense(units=2, activation='softmax'),
