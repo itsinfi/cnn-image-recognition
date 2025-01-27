@@ -6,7 +6,7 @@ from src import test_model
 x_train, x_test, y_train, y_test = read_data(
     img_cfg=IMAGE_CFG,
     label_cfg=LABEL_CFG, 
-    test_size=TEST_SIZE
+    test_size=TEST_SIZE,
     show_image_plot=SHOW_IMAGE_PLOT,
 )
 
