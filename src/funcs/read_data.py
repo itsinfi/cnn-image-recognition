@@ -2,10 +2,11 @@
 from ..classes.image_data_config import ImageDataConfig
 from ..classes.label_config import LabelConfig
 from .utils import plot_images, read_image_data, split_image_data
+from ..classes.log_config import LogConfig
 # from pandas import read_csv
 
 # TODO: return value
-def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float, show_image_plot: bool):
+def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float, log_cfg: LogConfig):
     # csv_files = []
     #
     # # for all csv configs
@@ -35,9 +36,9 @@ def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float
     # split data
     # return split_data(joined_csv=data_lines, label_name=label_cfg.NAME, test_size=test_size)
 
-    images, labels = read_image_data(img_cfg)
+    images, labels = read_image_data(img_cfg=img_cfg, log_cfg=log_cfg)
     
-    if show_image_plot:
+    if log_cfg.SHOW_IMAGE_PLOT:
         plot_images(images)
 
-    return split_image_data(images=images, labels=labels, test_size=test_size)
+    return split_image_data(images=images, labels=labels, test_size=test_size, log_cfg=log_cfg)

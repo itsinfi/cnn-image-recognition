@@ -4,6 +4,8 @@ from .abstract.data_config import DataConfig
 class ImageDataConfig(DataConfig):
 
     DELIMITER: str
+    FILTER_LIST: list[str]
+    IMAGE_COMPR_SIZE: tuple[int, int]
 
     def __init__(
         self, 
@@ -11,9 +13,11 @@ class ImageDataConfig(DataConfig):
         ROW_LIMIT: int,
         DELIMITER: str,
         FILTER_LIST: list[str],
+        IMAGE_COMPR_SIZE: tuple[int, int],
     ) -> None:
         self.DELIMITER = DELIMITER
         self.FILTER_LIST = FILTER_LIST
+        self.IMAGE_COMPR_SIZE = IMAGE_COMPR_SIZE
         super().__init__(
             FILE_NAME=FILE_NAME,
             ROW_LIMIT=ROW_LIMIT,
@@ -25,6 +29,7 @@ class ImageDataConfig(DataConfig):
             'file_name': self.FILE_NAME,
             'limit': self.ROW_LIMIT,
             'delimiter': self.DELIMITER,
-            'filters': self.FILTER_LIST,
+            'filter_list': self.FILTER_LIST,
+            'image_compression_size': self.IMAGE_COMPR_SIZE,
         }
         return str(repr)

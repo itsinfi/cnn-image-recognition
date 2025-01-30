@@ -8,6 +8,8 @@ from .classes import DataConfig
 from .classes import Config
 from .classes import JoinConfig
 from .classes import LabelConfig
+from .classes import ImageDataConfig
+from .classes import LogConfig
 from .funcs import read_data
 from .funcs import apply_int_conversions
 from .funcs import apply_list_conversions
