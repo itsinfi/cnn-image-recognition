@@ -1,6 +1,6 @@
 import numpy as np
-from src.classes.image_data_config import ImageDataConfig
-from src.classes.log_config import LogConfig
+from src.model_generator.classes.image_data_config import ImageDataConfig
+from src.model_generator.classes.log_config import LogConfig
 
 
 def read_image_data(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.ndarray[float]]:
