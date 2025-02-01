@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import Dense, Input, Flatten, Conv2D
+from tensorflow.keras.layers import Dense, Input, Flatten, Conv2D, MaxPooling2D
 from datetime import datetime
 from src import CsvDataConfig
 from src import TrainingConfig
@@ -9,6 +9,8 @@ from src import JoinConfig
 from src import LabelConfig
 from src import ImageDataConfig
 from src import LogConfig
+
+MODEL_NAME = 'mnist'
 
 SHOW_IMAGE_PLOT = False
 SHOW_MODEL_PLOT = False
@@ -35,14 +37,11 @@ LABEL_CFG: LabelConfig = LabelConfig(
 TEST_SIZE: float = .45
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
-        Conv2D(filters=8, kernel_size=(1, 1), activation='relu', input_shape=(28, 28, 1)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
+        Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
+        MaxPooling2D((2, 2)),
         Flatten(),
-        Dense(units=16, activation='relu'),
+        Dense(units=100, activation='relu'),
         Dense(units=len(IMAGE_CFG.FILTER_LIST), activation='softmax'),
     ],
 )
@@ -54,6 +53,6 @@ COMPILER_CFG: CompilerConfig = CompilerConfig(
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=3,
+    EPOCHS=20,
     BATCH_SIZE=32,
 )

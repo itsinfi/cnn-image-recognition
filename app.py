@@ -25,3 +25,5 @@ test_model(
     y_test=y_test,
     compiler_cfg=COMPILER_CFG
 )
+
+model.save(f'{MODEL_NAME}.h5')
