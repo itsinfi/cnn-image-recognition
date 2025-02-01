@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import Dense, Input, Flatten, Conv2D
+from tensorflow.keras.layers import Dense, Input, Flatten, Conv2D, MaxPooling2D
 from datetime import datetime
 from src import CsvDataConfig
 from src import TrainingConfig
@@ -7,32 +7,42 @@ from src import CompilerConfig
 from src import ConvertToIntConfig
 from src import JoinConfig
 from src import LabelConfig
-from src.model_generator.classes import ImageDataConfig
+from src import ImageDataConfig
+from src import LogConfig
+
+MODEL_NAME = 'mnist'
 
 SHOW_IMAGE_PLOT = False
 SHOW_MODEL_PLOT = False
 
-CSV_CFG: list[CsvDataConfig] = [
-
-]
-IMAGE_CFG = ImageDataConfig(
-    DELIMITER=',',
-    ROW_LIMIT=300,
-    FILE_NAME='data/mnist_train.csv',
-    FILTER_LIST=["0", "1"]
+LOG_CFG: LogConfig = LogConfig(
+    SHOW_FIRST_ENTRY=False,
+    SHOW_IMAGE_PLOT=False,
+    SHOW_SPLIT_DATA=False,
+    SHOW_MODEL_PLOT=False,
 )
-LABEL_CFG = LabelConfig(
+CSV_CFG: list[CsvDataConfig] = [
+]
+IMAGE_CFG: ImageDataConfig = ImageDataConfig(
+    DELIMITER=',',
+    ROW_LIMIT=None,
+    FILE_NAME='data/mnist_train.csv',
+    FILTER_LIST=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    IMAGE_COMPR_SIZE=(28, 28),
+)
+LABEL_CFG: LabelConfig = LabelConfig(
     FILE='data/FuelConsumptionCo2.csv',
     NAME='CO2EMISSIONS',
 )
-TEST_SIZE = .45
+TEST_SIZE: float = .45
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
-        Conv2D(filters=8, kernel_size=(1, 1), activation='relu', input_shape=(28, 28, 1)),
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
+        Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 8)),
+        MaxPooling2D((2, 2)),
         Flatten(),
-        Dense(units=16, activation='relu'),
-        Dense(units=2, activation='softmax'),
+        Dense(units=100, activation='relu'),
+        Dense(units=len(IMAGE_CFG.FILTER_LIST), activation='softmax'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
@@ -43,6 +53,6 @@ COMPILER_CFG: CompilerConfig = CompilerConfig(
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=10,
+    EPOCHS=20,
     BATCH_SIZE=32,
 )

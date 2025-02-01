@@ -8,3 +8,4 @@ from .join_config import JoinConfig
 from .label_config import LabelConfig
 from .abstract import DataConfig
 from .abstract import Config
+from .log_config import LogConfig

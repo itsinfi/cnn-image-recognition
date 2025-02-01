@@ -7,7 +7,7 @@ x_train, x_test, y_train, y_test = read_data(
     img_cfg=IMAGE_CFG,
     label_cfg=LABEL_CFG, 
     test_size=TEST_SIZE,
-    show_image_plot=SHOW_IMAGE_PLOT,
+    log_cfg=LOG_CFG,
 )
 
 model = train_model(
@@ -16,7 +16,7 @@ model = train_model(
     model_cfg=MODEL_CFG, 
     compiler_cfg=COMPILER_CFG, 
     training_cfg=TRAINING_CFG,
-    show_model_plot=SHOW_MODEL_PLOT,
+    log_cfg=LOG_CFG,
 )
 
 test_model(
@@ -25,3 +25,5 @@ test_model(
     y_test=y_test,
     compiler_cfg=COMPILER_CFG
 )
+
+model.save(f'{MODEL_NAME}.h5')
