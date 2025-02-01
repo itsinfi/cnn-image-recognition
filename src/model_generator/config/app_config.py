@@ -7,7 +7,7 @@ from src import CompilerConfig
 from src import ConvertToIntConfig
 from src import JoinConfig
 from src import LabelConfig
-from src.classes import ImageDataConfig
+from src.model_generator.classes import ImageDataConfig
 
 SHOW_IMAGE_PLOT = False
 SHOW_MODEL_PLOT = False

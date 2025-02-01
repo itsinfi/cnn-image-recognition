@@ -1,5 +1,5 @@
 import numpy as np
-from src.classes.image_data_config import ImageDataConfig
+from src.model_generator.classes.image_data_config import ImageDataConfig
 
 
 def read_image_data(img_cfg: ImageDataConfig) -> list[np.ndarray[float]]:

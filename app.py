@@ -1,4 +1,4 @@
-from src.config import *
+from src.model_generator.config import *
 from src import read_data
 from src import train_model
 from src import test_model
