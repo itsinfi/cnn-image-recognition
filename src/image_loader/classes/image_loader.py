@@ -6,23 +6,17 @@ class ImageLoader:
     def __init__(self):
         pass
 
-    def load_image(self, image_name: str):
-
+    def load_image(self, image_name: str) -> numpy.ndarray:
         img = cv.imread('data/images/'+image_name, cv.IMREAD_GRAYSCALE)
-        img = img.flatten()
-        label = [0]
-        # fixme: remove debug
-        print('label: '+str(label))
-        print('img: '+ img)
+        img = img.flatten().tolist()
+        label = [9]
         img = label + img
-        print('label + img: '+ img)
-        return img
+        return numpy.array(img)
 
     def export_list_to_csv(self, img_list: list[numpy.ndarray], csv_file_name):
-        with open('data/' + csv_file_name, 'w') as f:
+        with open('data/' + csv_file_name, 'w', newline='') as f:
             csv_writer = csv.writer(f)
-            for img in img_list:
-                csv_writer.writerow(img)
+            csv_writer.writerows(img_list)
 
     def export_to_csv(self, img: numpy.ndarray, csv_file_name: str):
         with open('data/'+csv_file_name, 'w') as f:
