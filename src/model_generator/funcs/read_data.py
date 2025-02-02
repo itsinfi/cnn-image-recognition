@@ -6,7 +6,7 @@ from ..classes.log_config import LogConfig
 # from pandas import read_csv
 
 # TODO: return value
-def read_data(img_cfg: ImageDataConfig, label_cfg: LabelConfig, test_size: float, log_cfg: LogConfig):
+def read_data(img_cfg: ImageDataConfig, test_size: float, log_cfg: LogConfig):
     # csv_files = []
     #
     # # for all csv configs

@@ -10,6 +10,8 @@ from src.model_generator.classes import JoinConfig
 from src.model_generator.classes import LabelConfig
 from src.model_generator.classes import ImageDataConfig
 from src.model_generator.classes import LogConfig
+from src.model_generator.classes import ImageAugmentationConfig
+from src.model_generator.classes import EarlyStoppingConfig
 from src.model_generator.funcs import read_data
 from src.model_generator.funcs import apply_int_conversions
 from src.model_generator.funcs import apply_list_conversions

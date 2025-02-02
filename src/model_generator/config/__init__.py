@@ -1,1 +1,1 @@
-from .app_config import *
+from .model_generator_config import *

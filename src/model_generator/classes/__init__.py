@@ -9,3 +9,5 @@ from .label_config import LabelConfig
 from .abstract import DataConfig
 from .abstract import Config
 from .log_config import LogConfig
+from .image_augmentation_config import ImageAugmentationConfig
+from .early_stopping_config import EarlyStoppingConfig
