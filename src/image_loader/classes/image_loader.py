@@ -31,7 +31,3 @@ class ImageLoader:
         with open('data/'+csv_file_name, 'w') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow(img)
-
-il = ImageLoader()
-
-il.load_image('cat.0.jpg')
