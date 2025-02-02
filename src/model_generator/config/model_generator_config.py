@@ -34,33 +34,34 @@ TEST_SIZE: float = .2
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
-        Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 2nd hiden layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
 
         # Last hidden layer
         Flatten(),
-        Dense(units=64, activation='relu'),
+        Dense(units=128, activation='relu'),
+        Dropout(rate=0.5),
 
         # Output layer
         Dense(units=10, activation='softmax'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
-    LOSS=SparseCategoricalCrossentropy(from_logits=True),
-    OPTIMIZER=Adam(),#learning_rate=0.0005),
+    LOSS=SparseCategoricalCrossentropy(),
+    OPTIMIZER=Adam(learning_rate=0.0005),
     METRICS=[
         'accuracy',
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=5,
+    EPOCHS=50,
     BATCH_SIZE=128,
     STEPS_PER_EPOCH= (0.8 * 57000) // 128,
     VERBOSE=2,
@@ -78,8 +79,8 @@ AUG_CFG: ImageAugmentationConfig = ImageAugmentationConfig(
 )
 
 ES_CFG: EarlyStoppingConfig = EarlyStoppingConfig(
-    ENABLED=False,
+    ENABLED=True,
     MONITOR='loss',
-    PATIENCE=3,
+    PATIENCE=2,
     RESTORE_BEST_WEIGHTS=True,
 )
