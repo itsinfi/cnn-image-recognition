@@ -11,7 +11,7 @@ from src import LogConfig
 from src import ImageAugmentationConfig
 from src import EarlyStoppingConfig
 
-MODEL_NAME = 'mnist'
+MODEL_NAME = 'cats_vs_dogs'
 
 SHOW_IMAGE_PLOT = False
 SHOW_MODEL_PLOT = False
@@ -25,16 +25,16 @@ LOG_CFG: LogConfig = LogConfig(
 )
 IMAGE_CFG: ImageDataConfig = ImageDataConfig(
     DELIMITER=',',
-    ROW_LIMIT=None,
-    FILE_NAME='data/mnist_train.csv',
-    FILTER_LIST=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    IMAGE_COMPR_SIZE=(28, 28),
+    ROW_LIMIT=100,
+    FILE_NAME='data/data.csv',
+    FILTER_LIST=['0', '1'],
+    IMAGE_COMPR_SIZE=(100, 100),
 )
 TEST_SIZE: float = .2
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(100, 100, 1)),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
@@ -50,7 +50,7 @@ MODEL_CFG: ModelConfig = ModelConfig(
         Dropout(rate=0.5),
 
         # Output layer
-        Dense(units=10, activation='softmax'),
+        Dense(units=2, activation='softmax'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
@@ -61,14 +61,14 @@ COMPILER_CFG: CompilerConfig = CompilerConfig(
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=50,
+    EPOCHS=1,
     BATCH_SIZE=128,
-    STEPS_PER_EPOCH= (0.8 * 57000) // 128,
+    STEPS_PER_EPOCH= (0.8 * 100) // 128,
     VERBOSE=2,
 )
 
 AUG_CFG: ImageAugmentationConfig = ImageAugmentationConfig(
-    ENABLED=True,
+    ENABLED=False,
     ROTATION_RANGE=10,
     WIDTH_SHIFT_RANGE=0.05,
     HEIGHT_SHIFT_RANGE=0.05,
@@ -79,7 +79,7 @@ AUG_CFG: ImageAugmentationConfig = ImageAugmentationConfig(
 )
 
 ES_CFG: EarlyStoppingConfig = EarlyStoppingConfig(
-    ENABLED=True,
+    ENABLED=False,
     MONITOR='loss',
     PATIENCE=2,
     RESTORE_BEST_WEIGHTS=True,
