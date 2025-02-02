@@ -9,6 +9,12 @@ class ImageLoader:
 
     def load_image(self, image_name: str) -> numpy.ndarray:
         img = cv.imread('data/train/'+image_name, cv.IMREAD_GRAYSCALE)
+
+        # resize
+        target_size = (100, 100)
+
+        img = cv.resize(img, target_size, interpolation=cv.INTER_LINEAR)
+
         img = img.flatten().tolist()
 
         label = re.search('\w+(?=\.)', image_name)
