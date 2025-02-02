@@ -1,15 +1,24 @@
 import csv
 import cv2 as cv
 import numpy
+import re
 
 class ImageLoader:
     def __init__(self):
         pass
 
     def load_image(self, image_name: str) -> numpy.ndarray:
-        img = cv.imread('data/images/'+image_name, cv.IMREAD_GRAYSCALE)
+        img = cv.imread('data/train/'+image_name, cv.IMREAD_GRAYSCALE)
         img = img.flatten().tolist()
-        label = [9]
+
+        label = re.search('\w+(?=\.)', image_name)
+
+        match label.group():
+            case 'cat':
+                label = [0]
+            case 'dog':
+                label = [1]
+
         img = label + img
         return numpy.array(img)
 
@@ -22,3 +31,7 @@ class ImageLoader:
         with open('data/'+csv_file_name, 'w') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow(img)
+
+il = ImageLoader()
+
+il.load_image('cat.0.jpg')
