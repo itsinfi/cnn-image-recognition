@@ -62,9 +62,8 @@ MODEL_CFG: ModelConfig = ModelConfig(
 
         Dense(units=120, activation='relu'),
 
-        
         # Output layer
-        Dense(units=2, activation='sigmoid'),
+        Dense(units=1, activation='sigmoid'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
