@@ -34,31 +34,37 @@ TEST_SIZE: float = .25
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(150, 150, 3)),
+        Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(150, 150, 3)),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
-        Conv2D(filters=32, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
+        Dropout(rate=0.4),
         
         # 2nd hidden layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
+        Dropout(rate=0.4),
         
         # 3rd hidden layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=256, kernel_size=(3, 3), activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
+        Dropout(rate=0.4),
 
-        # # 4th hidden layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
+        # 4th hidden layer
+        Conv2D(filters=512, kernel_size=(1, 1), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2))
 
         # Last hidden layer
         Flatten(),
-        Dense(units=256, activation='relu', kernel_regularizer=l2(0.001)),
         Dropout(rate=0.5),
+
+        Dense(units=120, activation='relu'),
+
         
         # Output layer
-        Dense(units=1, activation='sigmoid'),
+        Dense(units=2, activation='sigmoid'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
