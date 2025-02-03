@@ -1,9 +1,31 @@
 import numpy as np
+import os
 from src.model_generator.classes.image_data_config import ImageDataConfig
 from src.model_generator.classes.log_config import LogConfig
-
+from src.image_loader.classes.image_loader import ImageLoader
+from src.model_generator.config.model_generator_config import IMAGE_CFG
 
 def read_image_data(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.ndarray[float]]:
+    il = ImageLoader()
+    # load files into a list
+    print('loading image files into a list')
+    img_file_list = []
+    for img_file in os.listdir('data/train'):
+        if img_file.endswith('.jpg'):
+            img_file_list.append(img_file)
+    
+    # read images into a list
+    print('reading images')
+    img_list = []
+    label_list = []
+    for img_file in img_file_list:
+        print('loading: ', img_file)
+        img, label = il.load_image(image_name=img_file, target_size=IMAGE_CFG.IMAGE_SIZE)
+        img_list.append(img)
+        label_list.append(label)
+    return img_list, label_list
+
+def read_image_data_from_csv(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.ndarray[float]]:
     # read image data
     csv = open(img_cfg.FILE_NAME, 'r')
     lines = csv.readlines()
