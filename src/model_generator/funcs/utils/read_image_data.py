@@ -32,5 +32,5 @@ def read_image_data(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.nda
         # filter
         if len(img_cfg.FILTER_LIST) == 0 or split_lines[0] in img_cfg.FILTER_LIST:
             labels.append(int(split_lines[0]))
-            images.append(np.asarray(split_lines[1:], dtype='int').reshape(img_cfg.IMAGE_COMPR_SIZE))
+            images.append(np.asarray(split_lines[1:], dtype='int').reshape(img_cfg.IMAGE_SIZE))
     return images, labels

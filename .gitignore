@@ -5,4 +5,4 @@ data/test/
 data/train/
 data/dogs-vs-cats.zip
 data/exported.csv
-data/data.csv
+data/data**

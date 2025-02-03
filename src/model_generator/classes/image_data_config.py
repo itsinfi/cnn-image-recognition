@@ -5,7 +5,7 @@ class ImageDataConfig(DataConfig):
 
     DELIMITER: str
     FILTER_LIST: list[str]
-    IMAGE_COMPR_SIZE: tuple[int, int]
+    IMAGE_SIZE: tuple[int, int]
 
     def __init__(
         self, 
@@ -13,11 +13,11 @@ class ImageDataConfig(DataConfig):
         ROW_LIMIT: int,
         DELIMITER: str,
         FILTER_LIST: list[str],
-        IMAGE_COMPR_SIZE: tuple[int, int],
+        IMAGE_SIZE: tuple[int, int],
     ) -> None:
         self.DELIMITER = DELIMITER
         self.FILTER_LIST = FILTER_LIST
-        self.IMAGE_COMPR_SIZE = IMAGE_COMPR_SIZE
+        self.IMAGE_SIZE = IMAGE_SIZE
         super().__init__(
             FILE_NAME=FILE_NAME,
             ROW_LIMIT=ROW_LIMIT,
@@ -30,6 +30,6 @@ class ImageDataConfig(DataConfig):
             'limit': self.ROW_LIMIT,
             'delimiter': self.DELIMITER,
             'filter_list': self.FILTER_LIST,
-            'image_compression_size': self.IMAGE_COMPR_SIZE,
+            'image_compression_size': self.IMAGE_SIZE,
         }
         return str(repr)

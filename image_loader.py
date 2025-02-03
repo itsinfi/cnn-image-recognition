@@ -21,7 +21,7 @@ print('reading images')
 img_list = []
 for img_file in img_file_list:
     print('loading: ', img_file)
-    img_list.append(il.load_image(img_file))
+    img_list.append(il.load_image(image_name=img_file, target_size=IMAGE_CFG.IMAGE_SIZE))
 
 # export images from a list to a csv
 print('exporting images to csv')
@@ -34,7 +34,7 @@ img_cfg = ImageDataConfig(
     ROW_LIMIT=None,
     FILE_NAME='data/exported.csv',
     FILTER_LIST=['0', '1'],
-    IMAGE_COMPR_SIZE=(28, 28),
+    IMAGE_SIZE=(28, 28),
 )
 data, labels = read_image_data(img_cfg=img_cfg, log_cfg=LOG_CFG)
 

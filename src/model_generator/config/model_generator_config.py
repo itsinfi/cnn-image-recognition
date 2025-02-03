@@ -1,7 +1,7 @@
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.regularizers import l2
-from tensorflow.keras.losses import SparseCategoricalCrossentropy
+from tensorflow.keras.losses import SparseCategoricalCrossentropy, BinaryCrossentropy
 from src import CsvDataConfig
 from src import TrainingConfig
 from src import ModelConfig
@@ -26,15 +26,15 @@ LOG_CFG: LogConfig = LogConfig(
 IMAGE_CFG: ImageDataConfig = ImageDataConfig(
     DELIMITER=',',
     ROW_LIMIT=None,
-    FILE_NAME='data/data.csv',
+    FILE_NAME='data/data_150.csv',
     FILTER_LIST=['0', '1'],
-    IMAGE_COMPR_SIZE=(100, 100),
+    IMAGE_SIZE=(150, 150),
 )
 TEST_SIZE: float = .25
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(100, 100, 1)),
+        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(150, 150, 1)),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
@@ -49,20 +49,20 @@ MODEL_CFG: ModelConfig = ModelConfig(
         Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
 
-        # 4th hidden layer
+        # # 4th hidden layer
         Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
 
         # Last hidden layer
         Flatten(),
-        Dense(units=16, activation='relu', kernel_regularizer=l2(0.001)),
-        Dropout(rate=0.15),
-
+        Dense(units=256, activation='relu', kernel_regularizer=l2(0.001)),
+        Dropout(rate=0.5),
+        
         # Output layer
-        Dense(units=2, activation='softmax'),
+        Dense(units=1, activation='sigmoid'),
     ],
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
-    LOSS=SparseCategoricalCrossentropy(),
+    LOSS=BinaryCrossentropy(),
     OPTIMIZER=Adam(),#learning_rate=0.0005),
     METRICS=[
         'accuracy',
