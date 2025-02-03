@@ -25,29 +25,37 @@ LOG_CFG: LogConfig = LogConfig(
 )
 IMAGE_CFG: ImageDataConfig = ImageDataConfig(
     DELIMITER=',',
-    ROW_LIMIT=100,
+    ROW_LIMIT=None,
     FILE_NAME='data/data.csv',
     FILTER_LIST=['0', '1'],
     IMAGE_COMPR_SIZE=(100, 100),
 )
-TEST_SIZE: float = .2
+TEST_SIZE: float = .25
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
-        Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(100, 100, 1)),
+        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(100, 100, 1)),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
-        Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
+        Conv2D(filters=32, kernel_size=(3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+        
+        # 2nd hidden layer
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+        
+        # 3rd hidden layer
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
 
-        # 2nd hiden layer
-        Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
+        # 4th hidden layer
+        Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
 
         # Last hidden layer
         Flatten(),
-        Dense(units=128, activation='relu'),
-        Dropout(rate=0.5),
+        Dense(units=16, activation='relu', kernel_regularizer=l2(0.001)),
+        Dropout(rate=0.15),
 
         # Output layer
         Dense(units=2, activation='softmax'),
@@ -55,15 +63,15 @@ MODEL_CFG: ModelConfig = ModelConfig(
 )
 COMPILER_CFG: CompilerConfig = CompilerConfig(
     LOSS=SparseCategoricalCrossentropy(),
-    OPTIMIZER=Adam(learning_rate=0.0005),
+    OPTIMIZER=Adam(),#learning_rate=0.0005),
     METRICS=[
         'accuracy',
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=1,
-    BATCH_SIZE=128,
-    STEPS_PER_EPOCH= (0.8 * 100) // 128,
+    EPOCHS=15,
+    BATCH_SIZE=64,
+    STEPS_PER_EPOCH= (0.8 * 25000) // 64,
     VERBOSE=2,
 )
 
