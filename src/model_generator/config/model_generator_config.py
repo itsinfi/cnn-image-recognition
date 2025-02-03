@@ -34,7 +34,7 @@ TEST_SIZE: float = .25
 MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
-        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(150, 150, 1)),
+        Conv2D(filters=16, kernel_size=(3, 3), activation='relu', input_shape=(150, 150, 3)),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
