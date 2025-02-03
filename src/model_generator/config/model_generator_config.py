@@ -54,7 +54,7 @@ MODEL_CFG: ModelConfig = ModelConfig(
 
         # 4th hidden layer
         Conv2D(filters=512, kernel_size=(1, 1), activation='relu'),
-        MaxPooling2D(pool_size=(2, 2))
+        MaxPooling2D(pool_size=(2, 2)),
 
         # Last hidden layer
         Flatten(),
