@@ -2,7 +2,6 @@ from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D, Dropou
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
-from src import CsvDataConfig
 from src import TrainingConfig
 from src import ModelConfig
 from src import CompilerConfig
