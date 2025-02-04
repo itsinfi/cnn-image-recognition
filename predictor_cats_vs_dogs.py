@@ -15,7 +15,7 @@ img_cfg = ImageDataConfig(
     IMAGE_SIZE=(150, 150),
 )
 
-images, labels = read_image_data(img_cfg=img_cfg, log_cfg=LOG_CFG)
+images, labels, file_name = read_image_data(img_cfg=img_cfg, log_cfg=LOG_CFG)
 
 model = load_model('cats_vs_dogs', 'cats_vs_dogs_different_parameters_Acc93-Loss0,16')
 
@@ -27,6 +27,5 @@ print(f'Einzigartige Labels in den Trainingsdaten: {model.output_shape[-1]}')
 
 for img, pred in zip(images, predictions):
     pic_array = asarray(img, dtype='float')
-    print('Prediction:', argmax(pred), 'actual label:', labels[l], '\n')
-    print(pred)
+    print('Prediction:', 'dog' if pred[0]>0.5 else 'cat', '|', 'actual label:', 'dog' if labels[l]==[1] else 'cat' if labels[l] == [0] else 'unknown', '|', file_name[l], '| pred value:', pred, 'label:', labels[l], '\n')
     l+=1

@@ -9,7 +9,7 @@ class ImageLoader:
         pass
 
     def load_image(self, image_name: str, target_size: tuple[int]) -> numpy.ndarray:
-        img_file = cv.imread('data/train/'+image_name)
+        img_file = cv.imread('data/custom_test_2/'+image_name)
 
         img_resize = cv.resize(img_file, target_size, interpolation=cv.INTER_LINEAR)
 
@@ -26,8 +26,10 @@ class ImageLoader:
                 label = [0]
             case 'dog':
                 label = [1]
+            case _:
+                label = [3]
 
-        return img, label
+        return img, label, image_name
 
     def export_list_to_csv(self, img_list: list[numpy.ndarray], csv_file_name):
         with open('data/' + csv_file_name, 'w', newline='') as f:

@@ -15,7 +15,7 @@ def read_image_data(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.nda
     # load files into a list
     print('loading image files into a list')
     img_file_list = []
-    for img_file in os.listdir('data/custom_test'):
+    for img_file in os.listdir('data/custom_test_2'):
         if ROW_LIMIT != None and ROW_LIMIT == 0:
             break
         if img_file.endswith('.jpg'):
@@ -28,13 +28,15 @@ def read_image_data(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.nda
     print('reading images')
     img_list = []
     label_list = []
+    file_name_list = []
     for img_file in img_file_list:
         print('loading: ', img_file)
-        img, label = il.load_image(image_name=img_file, target_size=IMAGE_CFG.IMAGE_SIZE)
+        img, label, file_name = il.load_image(image_name=img_file, target_size=IMAGE_CFG.IMAGE_SIZE)
 
         img_list.append(img)
         label_list.append(label)
-    return img_list, label_list
+        file_name_list.append(file_name)
+    return img_list, label_list, file_name_list
 
 def read_image_data_from_csv(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.ndarray[float]]:
     # read image data
