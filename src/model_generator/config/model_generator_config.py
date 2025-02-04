@@ -74,9 +74,10 @@ COMPILER_CFG: CompilerConfig = CompilerConfig(
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=15,
+    EPOCHS=50,
     BATCH_SIZE=64,
-    STEPS_PER_EPOCH= (0.8 * 25000) // 64,
+    # STEPS_PER_EPOCH= (0.8 * 25000) // 64,
+    STEPS_PER_EPOCH= 2000,
     VERBOSE=2,
 )
 
