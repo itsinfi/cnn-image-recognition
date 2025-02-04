@@ -34,19 +34,22 @@ MODEL_CFG: ModelConfig = ModelConfig(
     LAYERS=[
         # Input layer
         Conv2D(filters=64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+        Dropout(rate=0.3),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 1st hidden layer
         Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
+        Dropout(rate=0.3),
         MaxPooling2D(pool_size=(2, 2)),
 
         # 2nd hiden layer
         Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
 
         # Last hidden layer
         Flatten(),
-        Dense(units=128, activation='relu'),
         Dropout(rate=0.5),
+        Dense(units=128, activation='relu', kernel_regularizer=l2(0.025)),
 
         # Output layer
         Dense(units=10, activation='softmax'),
@@ -60,14 +63,14 @@ COMPILER_CFG: CompilerConfig = CompilerConfig(
     ]
 )
 TRAINING_CFG: TrainingConfig = TrainingConfig(
-    EPOCHS=50,
+    EPOCHS=40,
     BATCH_SIZE=128,
     STEPS_PER_EPOCH= (0.8 * 57000) // 128,
     VERBOSE=2,
 )
 
 AUG_CFG: ImageAugmentationConfig = ImageAugmentationConfig(
-    ENABLED=True,
+    ENABLED=False,
     ROTATION_RANGE=10,
     WIDTH_SHIFT_RANGE=0.05,
     HEIGHT_SHIFT_RANGE=0.05,
@@ -78,7 +81,7 @@ AUG_CFG: ImageAugmentationConfig = ImageAugmentationConfig(
 )
 
 ES_CFG: EarlyStoppingConfig = EarlyStoppingConfig(
-    ENABLED=True,
+    ENABLED=False,
     MONITOR='loss',
     PATIENCE=2,
     RESTORE_BEST_WEIGHTS=True,
