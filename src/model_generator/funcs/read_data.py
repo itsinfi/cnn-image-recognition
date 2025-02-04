@@ -7,34 +7,6 @@ from ..classes.log_config import LogConfig
 
 # TODO: return value
 def read_data(img_cfg: ImageDataConfig, test_size: float, log_cfg: LogConfig):
-    # csv_files = []
-    #
-    # # for all csv configs
-    # for csv_cfg in csv_cfg_list:
-    #
-    #     # read csv
-    #     csv = read_csv(
-    #         csv_cfg.FILE_NAME,
-    #         delimiter=csv_cfg.DELIMITER,
-    #         nrows=csv_cfg.ROW_LIMIT,
-    #         usecols=csv_cfg.SELECTED_COLS
-    #     )
-    #
-    #     # apply conversions to int (if specified)
-    #     csv = apply_int_conversions(csv_cfg=csv_cfg, csv=csv)
-    #
-    #     # apply list conversion (if specified)
-    #     csv = apply_list_conversions(csv_cfg=csv_cfg, csv=csv)
-    #
-    #     # attach to list
-    #     csv_files.append(csv)
-
-
-    # Join tables TODO: create add a proper join config + think about join types
-    # joined_csv = join_data(csv_files=csv_files)
-
-    # split data
-    # return split_data(joined_csv=data_lines, label_name=label_cfg.NAME, test_size=test_size)
 
     images, labels = read_image_data(img_cfg=img_cfg, log_cfg=log_cfg)
     
