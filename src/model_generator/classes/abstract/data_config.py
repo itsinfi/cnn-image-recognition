@@ -1,4 +1,3 @@
-from ..convert_to_int_config import ConvertToIntConfig
 from .config import Config
 
 class DataConfig(Config):

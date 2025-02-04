@@ -10,7 +10,7 @@ from src import LogConfig
 from src import ImageAugmentationConfig
 from src import EarlyStoppingConfig
 
-MODEL_NAME = 'cats_vs_dogs'
+MODEL_NAME = 'cats_vs_dogs_different_parameters_Acc93-Loss0,16'
 
 SHOW_IMAGE_PLOT = False
 SHOW_MODEL_PLOT = False

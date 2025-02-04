@@ -1,6 +1,6 @@
 # from ..classes.csv_data_config import CsvDataConfig
 from ..classes.image_data_config import ImageDataConfig
-from ..classes.label_config import LabelConfig
+# from ..classes.label_config import LabelConfig
 from .utils import plot_images, read_image_data, split_image_data
 from ..classes.log_config import LogConfig
 # from pandas import read_csv

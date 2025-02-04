@@ -15,7 +15,7 @@ def read_image_data(img_cfg: ImageDataConfig, log_cfg: LogConfig) -> list[np.nda
     # load files into a list
     print('loading image files into a list')
     img_file_list = []
-    for img_file in os.listdir('data/train'):
+    for img_file in os.listdir('data/custom_test'):
         if ROW_LIMIT != None and ROW_LIMIT == 0:
             break
         if img_file.endswith('.jpg'):
