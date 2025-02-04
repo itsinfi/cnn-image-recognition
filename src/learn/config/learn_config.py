@@ -70,12 +70,12 @@ TRAINING_CFG: TrainingConfig = TrainingConfig(
 )
 
 AUG_CFG: ImageAugmentationConfig = ImageAugmentationConfig(
-    ENABLED=False,
-    ROTATION_RANGE=10,
-    WIDTH_SHIFT_RANGE=0.05,
-    HEIGHT_SHIFT_RANGE=0.05,
-    ZOOM_RANGE=0.05,
-    SHEAR_RANGE=0.05,
+    ENABLED=True,
+    ROTATION_RANGE=15,
+    WIDTH_SHIFT_RANGE=0.04,
+    HEIGHT_SHIFT_RANGE=0.04,
+    ZOOM_RANGE=0.04,
+    SHEAR_RANGE=0.04,
     HORIZONTAL_FLIP=False,
     VERTICAL_FLIP=False,
 )
