@@ -1,3 +1,6 @@
 __pycache__/
 .idea/
 .run
+data/test
+data/train
+data**.csv

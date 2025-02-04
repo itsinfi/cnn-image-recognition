@@ -1,9 +1,9 @@
-from src.image_loader.classes.image_loader import ImageLoader
+from src.predict.classes.image_loader import ImageLoader
 import os
-from src.model_generator.funcs.utils.read_image_data import read_image_data
-from src.image_loader.funcs.utils.load_model import load_model
+from src.learn.funcs.utils.read_image_data import read_image_data
+from src.predict.funcs.utils.load_model import load_model
 from src import ImageDataConfig
-from src.model_generator.config import *
+from src.learn.config import *
 from numpy import array, argmax, asarray
 
 il = ImageLoader()
@@ -35,8 +35,8 @@ model = load_model(MODEL_NAME)
 
 predictions = model.predict(array(data))
 
-for dick, pred in zip(data, predictions):
-    pic_array = asarray(dick, dtype='float')
+for d, pred in zip(data, predictions):
+    pic_array = asarray(d, dtype='float')
     for z in range(28):
         for s in range(28):
             print(str(int(pic_array[z][s])).rjust(3), end=' ')

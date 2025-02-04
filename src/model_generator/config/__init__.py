@@ -1,1 +1,0 @@
-from .model_generator_config import *
